@@ -1,0 +1,52 @@
+#!/usr/bin/php
+<?php
+
+// Define own APRS message
+$description= "Hotspot DMR";
+
+// Define SSID for APRS callsign
+$ssid="10";
+
+// Send status APRS msg with my TG BM: 1 or not 0
+$tglist="1";
+
+define('APRS_CALLSIGN','DMR-PL');
+define('APRS_PASSCODE',26031);
+define('APRS_SERVER','euro.aprs2.net');
+define('APRS_SERVER_PORT',14580);
+
+$slot1 = trim(shell_exec("sed '/Slot1=/!d; /Slot1/s/Slot1=//' /etc/mmdvmhost"));
+$slot2 = trim(shell_exec("sed '/Slot2=/!d; /Slot2/s/Slot2=//' /etc/mmdvmhost"));
+$dmrid = trim(shell_exec("sed '/Id=/!d; s/Id=//' /etc/mmdvmhost"));
+
+$call = trim(shell_exec("sed '/Callsign=/!d; /Callsign/s/Callsign=//' /etc/mmdvmhost"));
+$callsign=$call."-".$ssid;
+$lat = trim(shell_exec("sed '/Latitude=/!d; s/Latitude=//' /etc/mmdvmhost"));
+$lon = trim(shell_exec("sed '/Longitude=/!d; s/Longitude=//' /etc/mmdvmhost"));
+$altm = trim(shell_exec("sed '/Height=/!d; s/Height=//' /etc/mmdvmhost"));
+
+	date_default_timezone_set('UTC'); //Set timezone for everything to UTC
+	ini_set('display_errors','On');
+	error_reporting(E_ALL);
+
+	chdir(dirname(__FILE__));
+
+	include('aprs.inc.php');
+
+	echo "connecting to aprs...\n";
+	$aprs_socket = aprs_connect();
+	if ($aprs_socket === false)
+		return 1;
+// Send APRS coordiantes
+	aprs_send_location($callsign, $lat, $lon, $altm, $description . ' ');
+
+// Send APRS status witg TG BM
+	if($tglist == "1") {
+           $tg=getTG($slot1,$slot2,$dmrid);
+	    $aprs_status="My TG BM: ".$tg;
+	if($tg != "") {
+	    aprs_send_status($callsign, $aprs_status . ' ');}
+	}
+
+	socket_close($aprs_socket);
+?>
