@@ -4,12 +4,12 @@ rpi-rw
 
 cd /tmp
 
-sudo wget http://sp2ong.noip.pl/downloads/aprshotspot.tgz
+sudo wget https://github.com/FRS077/APRS.git
 
 sudo tar xvzfP aprshotspot.tgz
 
 
-Les scripts d'envoi de données à aprs.fi seront placés dans / etc / aprs /. Le script d'exécution principal est un fichier nommé ' aprshotspot ', le second fichier est utilisé pour envoyer des données et convertir les coordonnées au format utilisé dans aprs.fi
+Les scripts d'envoi de données à aprs seront placés dans /etc/aprs/. Le script d'exécution principal est un fichier nommé ' aprshotspot ', le second fichier est utilisé pour envoyer des données et convertir les coordonnées au format utilisé dans aprs.
 
 Le contenu des informations telles qu'elles apparaissent peut être ajusté individuellement, il suffit de modifier le fichier aprshotspot :
 
@@ -37,7 +37,7 @@ Nous pouvons exécuter manuellement le script en écrivant la commande:
 
 sudo /etc/aprs/aprshotspot
 
-Nous pouvons vérifier sur la carte http://aprs.fi si nos données sont apparues.
+Nous pouvons vérifier sur la carte APRS si nos données sont apparues.
 
 Nous pouvons maintenant ajouter l'exécution cyclique de notre script avec la commande:
 
