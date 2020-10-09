@@ -1,4 +1,10 @@
 # APRS
+
+rpi-rw
+cd /tmp
+sudo wget http://sp2ong.noip.pl/downloads/aprshotspot.tgz
+sudo tar xvzfP aprshotspot.tgz
+
 Les scripts d'envoi de données à aprs.fi seront placés dans / etc / aprs /. Le script d'exécution principal est un fichier nommé ' aprshotspot ', le second fichier est utilisé pour envoyer des données et convertir les coordonnées au format utilisé dans aprs.fi
 
 Le contenu des informations telles qu'elles apparaissent peut être ajusté individuellement, il suffit de modifier le fichier aprshotspot :
