@@ -1,5 +1,15 @@
 # APRS
 
+Installation:
+
+Ce connecter en SSH via putty ou sur la page Web Config -> Expert -> SSH
+
+si le login n'est pas changé
+
+login= pi-star pass= raspberry
+
+puis une fois sur la console
+
 rpi-rw
 
 cd /tmp
