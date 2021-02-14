@@ -14,7 +14,7 @@ rpi-rw
 
 cd /tmp
 
-sudo wget https://github.com/FRS077/APRS.git
+sudo wget http://sp2ong.noip.pl/downloads/aprshotspot.tgz
 
 sudo tar xvzfP aprshotspot.tgz
 
