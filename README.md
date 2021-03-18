@@ -10,6 +10,8 @@ login= pi-star pass= raspberry
 
 puis une fois sur la console
 
+**sudo su**
+
 **rpi-rw**
 
 **cd /tmp**
